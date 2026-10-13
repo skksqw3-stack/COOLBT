@@ -1,35 +1,41 @@
 [app]
-
-title = Cooler Control
-package.name = coolercontrol
-package.domain = org.coolercontrol
+title = MyVPN
+package.name = myvpn
+package.domain = com.myvpn
 
 source.dir = .
-source.include_exts = py,kv,png,jpg,atlas,ttf
-source.include_patterns = assets/*,*.py,*.kv
+source.include_exts = py,png,jpg,kv,atlas,json,ttf
 
-version = 1.0.0
+version = 0.1
 
-requirements = python3,kivy==2.3.0,kivymd==1.2.0,pyjnius,pyserial
+# کتابخانه‌های مورد نیاز
+requirements = python3==3.11.5,kivy==2.3.0,kivymd==1.1.1,pyjnius==1.6.1,requests,urllib3
 
 orientation = portrait
 fullscreen = 0
 
-icon.filename = %(source.dir)s/assets/icon.png
+# آیکون
+icon.filename = %(source.dir)s/icon.png
 
-android.permissions = BLUETOOTH,BLUETOOTH_ADMIN,BLUETOOTH_CONNECT,BLUETOOTH_SCAN,ACCESS_FINE_LOCATION
+# ⚠️ مجوزهای مهم برای VPN
+android.permissions = \
+    android.permission.INTERNET,\
+    android.permission.ACCESS_NETWORK_STATE,\
+    android.permission.ACCESS_WIFI_STATE,\
+    android.permission.FOREGROUND_SERVICE,\
+    android.permission.BIND_VPN_SERVICE,\
+    android.permission.POST_NOTIFICATIONS
+
 android.api = 33
 android.minapi = 21
 android.ndk = 25b
 android.ndk_api = 21
-android.build_tools_version = 33.0.2
-android.accept_sdk_license = True
-android.archs = arm64-v8a, armeabi-v7a
+android.archs = arm64-v8a
 android.allow_backup = False
-android.private_storage = True
 
-android.sdk_path = /home/seyed/android-sdk
-android.ndk_path = /home/seyed/android-ndk/ndk
+# امنیت
+android.debug_artifact = apk
+android.release_artifact = aab
 
 [buildozer]
 log_level = 2
